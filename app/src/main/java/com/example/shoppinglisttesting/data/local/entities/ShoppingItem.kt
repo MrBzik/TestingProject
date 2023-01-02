@@ -1,4 +1,4 @@
-package com.example.shoppinglisttesting.data.entities
+package com.example.shoppinglisttesting.data.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -8,10 +8,12 @@ data class ShoppingItem (
 
     var amount : Int,
     var name : String,
-    var price : Float
+    var price : Float,
+    var imageUrl : String,
 
-        ) {
     @PrimaryKey(autoGenerate = true)
-    var id : Int? = null
+     val id : Int? = null
 
-}
+        )
+
+
