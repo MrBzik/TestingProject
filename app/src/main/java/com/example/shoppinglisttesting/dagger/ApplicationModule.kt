@@ -3,7 +3,10 @@ package com.example.shoppinglisttesting.dagger
 import android.content.Context
 import androidx.room.Room
 import com.example.shoppinglisttesting.data.local.ShoppingDB
+import com.example.shoppinglisttesting.data.local.ShoppingDao
 import com.example.shoppinglisttesting.data.remote.PixabayApi
+import com.example.shoppinglisttesting.repositories.MainRepository
+import com.example.shoppinglisttesting.repositories.ShoppingRepository
 import com.example.shoppinglisttesting.utils.Constants.DATABASE_NAME
 import com.example.shoppinglisttesting.utils.Constants.PIXABAY_BASE_URL
 import dagger.Module
@@ -41,6 +44,13 @@ object ApplicationModule {
             .build()
             .create(PixabayApi::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun providesMainRepository(
+        dao: ShoppingDao,
+        api: PixabayApi
+    ) = MainRepository(dao, api) as ShoppingRepository
 
 
 }
