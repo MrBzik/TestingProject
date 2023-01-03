@@ -9,7 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Response
 import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class MainRepository @Inject constructor (
     private val shoppingDao: ShoppingDao,
     private val pixabayApi: PixabayApi) : ShoppingRepository {
