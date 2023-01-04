@@ -17,6 +17,7 @@ import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 import com.example.shoppinglisttesting.R
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import com.example.shoppinglisttesting.getOrAwaitValue
 import com.example.shoppinglisttesting.repositories.FakeMainRepository
 import com.example.shoppinglisttesting.ui.ShoppingViewModel
 import com.google.common.truth.Truth.assertThat
@@ -78,7 +79,7 @@ class AddShoppingItemFragmentTest {
             viewModel = testViewModel
         }
         pressBack()
-        assertThat(testViewModel.currentImageUrl.value).isEqualTo("")
+        assertThat(testViewModel.currentImageUrl.getOrAwaitValue()).isEqualTo("")
 
 
     }
