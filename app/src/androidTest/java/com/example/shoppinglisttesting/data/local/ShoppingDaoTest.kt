@@ -1,14 +1,9 @@
 package com.example.shoppinglisttesting.data.local
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.example.shoppinglisttesting.data.local.entities.ShoppingItem
 import com.example.shoppinglisttesting.getOrAwaitValue
-import com.example.shoppinglisttesting.launchFragmentInHiltContainer
-import com.example.shoppinglisttesting.ui.fragments.ShoppingFragment
 import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -18,7 +13,6 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -92,13 +86,6 @@ class ShoppingDaoTest {
             val totalPrice = shoppingDao.observeTotalPrice().getOrAwaitValue()
             assertThat(totalPrice).isEqualTo(15f)
         }
-    }
-
-    @Test
-    fun testFragmentInHiltContainer (){
-
-        launchFragmentInHiltContainer<ShoppingFragment> {  }
-
     }
 
 }
