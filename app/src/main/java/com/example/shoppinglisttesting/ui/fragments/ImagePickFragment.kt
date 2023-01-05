@@ -54,9 +54,6 @@ class ImagePickFragment @Inject constructor(
                 viewModel.searchForImages(it.toString())
 
             }
-
-
-
         }
 
         viewModel.images.observe(viewLifecycleOwner){

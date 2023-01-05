@@ -22,6 +22,7 @@ import com.example.shoppinglisttesting.getOrAwaitValue
 import com.example.shoppinglisttesting.repositories.FakeMainRepository
 import com.example.shoppinglisttesting.ui.ShoppingFragmentFactory
 import com.example.shoppinglisttesting.ui.ShoppingViewModel
+import com.example.shoppinglisttesting.utils.Status
 import com.google.common.truth.Truth.assertThat
 import org.mockito.Mockito.verify
 import javax.inject.Inject
@@ -40,6 +41,8 @@ class ImagePickFragmentTest{
 
     @get:Rule
     val hiltRule = HiltAndroidRule(this)
+
+    lateinit var testViewModel : ShoppingViewModel
 
     @Before
     fun setUp(){
@@ -65,6 +68,40 @@ class ImagePickFragmentTest{
         verify(navController).popBackStack()
         assertThat(testViewModel.currentImageUrl.getOrAwaitValue()).isEqualTo("TEST")
 
+    }
+
+    @Test
+    fun searchImages_imagesEmitSuccessStatus(){
+
+        testViewModel = ShoppingViewModel(FakeMainRepository())
+        launchFragmentInHiltContainer<ImagePickFragment> (fragmentFactory = fragmentFactory) {
+
+            viewModel = testViewModel
+            viewModel.searchForImages("Anything")
+        }
+
+           val response = testViewModel.images.getOrAwaitValue().peekContent()
+
+            assertThat(response.status).isEqualTo(Status.SUCCESS)
+    }
+
+    @Test
+    fun searchImages_imagesEmitErrorStatus(){
+
+        val fakeRepository = FakeMainRepository()
+
+        fakeRepository.setErrorIsNeeded(true)
+
+        testViewModel = ShoppingViewModel(fakeRepository)
+        launchFragmentInHiltContainer<ImagePickFragment> (fragmentFactory = fragmentFactory) {
+
+            viewModel = testViewModel
+            viewModel.searchForImages("Anything")
+        }
+
+        val response = testViewModel.images.getOrAwaitValue().peekContent()
+
+        assertThat(response.status).isEqualTo(Status.ERROR)
     }
 
 
