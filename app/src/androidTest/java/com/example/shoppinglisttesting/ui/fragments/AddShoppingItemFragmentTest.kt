@@ -55,7 +55,7 @@ class AddShoppingItemFragmentTest {
 
         val navController = mock(NavController::class.java)
 
-        launchFragmentInHiltContainer<AddShoppingItemFragment> {
+        launchFragmentInHiltContainer<AddShoppingItemFragment>(fragmentFactory = fragmentFactory) {
             Navigation.setViewNavController(requireView(), navController)
         }
 
@@ -69,7 +69,7 @@ class AddShoppingItemFragmentTest {
 
         val navController = mock(NavController::class.java)
 
-        launchFragmentInHiltContainer<AddShoppingItemFragment> {
+        launchFragmentInHiltContainer<AddShoppingItemFragment>(fragmentFactory = fragmentFactory) {
             Navigation.setViewNavController(requireView(), navController)
         }
 
@@ -85,7 +85,7 @@ class AddShoppingItemFragmentTest {
         val navController = mock(NavController::class.java)
 
 
-        launchFragmentInHiltContainer<AddShoppingItemFragment> {
+        launchFragmentInHiltContainer<AddShoppingItemFragment>(fragmentFactory = fragmentFactory) {
             Navigation.setViewNavController(requireView(), navController)
             viewModel = testViewModel
         }
