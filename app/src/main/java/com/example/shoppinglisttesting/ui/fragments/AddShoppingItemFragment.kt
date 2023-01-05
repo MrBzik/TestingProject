@@ -9,8 +9,10 @@ import com.example.shoppinglisttesting.R
 import com.example.shoppinglisttesting.databinding.FragmentAddShoppingItemBinding
 import com.example.shoppinglisttesting.utils.Status
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class AddShoppingItemFragment @Inject constructor(
     val glide : RequestManager
 ) : BaseFragment<FragmentAddShoppingItemBinding>(

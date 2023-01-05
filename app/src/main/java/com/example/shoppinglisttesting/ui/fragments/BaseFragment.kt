@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.example.shoppinglisttesting.ui.ShoppingFragmentFactory
 import com.example.shoppinglisttesting.ui.ShoppingViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 abstract class BaseFragment <VB : ViewBinding>  (
             val bindInflater : (inflater : LayoutInflater) -> VB
@@ -15,6 +18,7 @@ abstract class BaseFragment <VB : ViewBinding>  (
         ): Fragment() {
 
     lateinit var viewModel : ShoppingViewModel
+
 
     private var _binding : VB? = null
 

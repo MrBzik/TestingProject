@@ -9,16 +9,25 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppinglisttesting.R
 import com.example.shoppinglisttesting.adapters.ShoppingItemAdapter
 import com.example.shoppinglisttesting.databinding.FragmentShoppingBinding
+import com.example.shoppinglisttesting.ui.ShoppingFragmentFactory
 import com.example.shoppinglisttesting.ui.ShoppingViewModel
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class ShoppingFragment @Inject constructor(
         private val itemAdapter : ShoppingItemAdapter,
         private val shoppingViewModel : ShoppingViewModel? = null
 ): BaseFragment<FragmentShoppingBinding>(
     FragmentShoppingBinding::inflate
 ) {
+
+    @Inject
+    lateinit var fragmentFactory: ShoppingFragmentFactory
+
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

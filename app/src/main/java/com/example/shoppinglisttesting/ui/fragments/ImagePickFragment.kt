@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.shoppinglisttesting.adapters.ImageAdapter
 import com.example.shoppinglisttesting.databinding.FragmentImagePickBinding
 import com.example.shoppinglisttesting.utils.Constants.GRID_SPAN_COUNT
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class ImagePickFragment @Inject constructor(
     val imageAdapter: ImageAdapter
 ) : BaseFragment<FragmentImagePickBinding>(
