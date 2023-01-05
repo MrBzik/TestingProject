@@ -89,7 +89,7 @@ class ShoppingFragment @Inject constructor(
 
             val price = it ?: 0f
 
-            val priceText = "Total price : $price"
+            val priceText = "Total price : $price euro"
 
             bind.tvShoppingItemPrice.text = priceText
 

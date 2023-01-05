@@ -35,6 +35,9 @@ class ShoppingViewModel @Inject constructor(
     private val _insertShoppingItemStatus = MutableLiveData<Event<Resource<ShoppingItem>>>()
     val insertShoppingItemStatus : LiveData<Event<Resource<ShoppingItem>>> = _insertShoppingItemStatus
 
+    private val _searchQuery = MutableLiveData<String>()
+    val searchQuery : LiveData<String> = _searchQuery
+
 
     fun deleteShoppingItem(item : ShoppingItem) = viewModelScope.launch {
         repository.deleteShoppingItem(item)
@@ -46,6 +49,10 @@ class ShoppingViewModel @Inject constructor(
 
     fun setCurrentImageUrl(url : String){
         _currentImageUrl.postValue(url)
+    }
+
+    fun updateSearchQuery(query : String) {
+        _searchQuery.postValue(query)
     }
 
     //fun to validate user input

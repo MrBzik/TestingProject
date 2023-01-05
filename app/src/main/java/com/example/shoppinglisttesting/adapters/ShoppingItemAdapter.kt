@@ -40,7 +40,10 @@ class ShoppingItemAdapter @Inject constructor (
         holder.bind.apply {
             tvName.text = currentItem.name
             tvShoppingItemAmount.text = currentItem.amount.toString()
-            tvShoppingItemPrice.text =currentItem.price.toString()
+
+            val priceText = "${currentItem.price} euro"
+
+            tvShoppingItemPrice.text = priceText
         }
 
         glide.load(currentItem.imageUrl).into(holder.bind.ivShoppingImage)

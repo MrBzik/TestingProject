@@ -34,6 +34,7 @@ class AddShoppingItemFragment @Inject constructor(
         val onBackPressedCallback = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
                 viewModel.setCurrentImageUrl("")
+                viewModel.updateSearchQuery("")
                 findNavController().popBackStack()
             }
         }
@@ -68,14 +69,25 @@ class AddShoppingItemFragment @Inject constructor(
                             result.message ?: "mysterious fail", Snackbar.LENGTH_SHORT).show()
                     }
                     Status.SUCCESS -> {
-                        Snackbar.make(requireActivity().findViewById(R.id.rootLayout),
-                            "item added", Snackbar.LENGTH_SHORT).show()
+                        viewModel.updateSearchQuery("")
                         findNavController().popBackStack()
                     }
                     else -> {/* NO-OP */}
                 }
             }
         }
+
+        viewModel.searchQuery.observe(viewLifecycleOwner){
+
+            bind.etShoppingItemName.apply {
+
+                if(text.toString().isEmpty()){
+                    setText(it)
+                }
+            }
+
+        }
+
     }
 
 }
